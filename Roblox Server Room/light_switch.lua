@@ -2,35 +2,6 @@
 Made by Le lance Flamer (lelanceflamer) on Discord. / Fait par Le lance Flamer (lelanceflamer) sur Discord.
 ]]
 
---Random functions lol
-local function ForEach(items, func)
-    for i, v in ipairs(items) do
-        func(v)
-    end
-end
-
-local function BoolString(value, falseReturn, trueReturn)
-    if value ~= nil then
-        local fString = "False"
-        local tString = "True"
-        if falseReturn ~= nil then
-            fString = falseReturn
-        end
-
-        if trueReturn ~= nil then
-            tString = trueReturn
-        end
-
-        if value == false then
-            return fString
-        else
-            return tString
-        end
-    end
-
-    return nil
-end
-
 function init()
     allLights = FindLights("light")
     DebugPrint(FindShape("lightSwitch"))
@@ -51,4 +22,33 @@ function tick()
         
         SetTag(lightSwitch, "interact", BoolString(lit, "Turn on", "Turn off"))
     end
+end
+
+--Random functions lol
+function ForEach(items, func)
+    for i, v in ipairs(items) do
+        func(v)
+    end
+end
+
+function BoolString(value, falseReturn, trueReturn)
+    if value ~= nil then
+        local fString = "False"
+        local tString = "True"
+        if falseReturn ~= nil then
+            fString = falseReturn
+        end
+
+        if trueReturn ~= nil then
+            tString = trueReturn
+        end
+
+        if value == false then
+            return fString
+        else
+            return tString
+        end
+    end
+
+    return nil
 end
