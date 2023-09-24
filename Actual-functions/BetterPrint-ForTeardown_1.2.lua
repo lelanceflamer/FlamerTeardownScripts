@@ -23,7 +23,7 @@ function BetterPrint(...) --Just made this for convenience, so instead of doing 
                 if not type(w) == "table" then
                     builtString = builtString .. tostring(j) .. " = " .. tostring(w) .. " "
                 else
-                    builtString = builString .. tostring(j) .. " = " .. getTableString(w)
+                    builtString = builtString .. tostring(j) .. " = " .. getTableString(w)
                 end
             end
         end
