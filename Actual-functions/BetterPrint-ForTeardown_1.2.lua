@@ -1,19 +1,4 @@
-function BetterPrint(...) --Just made this for convenience, so instead of doing this (for example): DebugPrint("hello " .. val .. " world!"), you can do this: BetterPrint("hello", val, "world!")
-    function getTableString(table)
-        local newString = ""
-        if type(table) == "table" then
-            for i, v in pairs(table) do
-                if not type(v) == "table" then
-                    newString = newString .. i .. " = " .. v .. " "
-                else
-                    newString = newString .. i .. " = " .. getTableString(v)
-                end
-            end
-        end
-
-        return newString
-    end
-    
+function BetterPrint(...) --Just made this for convenience, so instead of doing this (for example): DebugPrint("hello " .. val .. " world!"), you can do this: BetterPrint("hello", val, "world!")    
     local builtString = ""
     for i, v in ipairs({...}) do
         if type(v) ~= "table" then
@@ -23,7 +8,7 @@ function BetterPrint(...) --Just made this for convenience, so instead of doing 
                 if not type(w) == "table" then
                     builtString = builtString .. tostring(j) .. " = " .. tostring(w) .. " "
                 else
-                    builtString = builtString .. tostring(j) .. " = " .. getTableString(w)
+                    --Do something but too lazy
                 end
             end
         end
