@@ -1,0 +1,1 @@
+This is for my custom guide [**Making a heist, all info you need (will be more)**](https://steamcommunity.com/sharedfiles/filedetails/?id=3070562925) on Steam, I add files that can be useful to people, so they can have more options for making their heists.
