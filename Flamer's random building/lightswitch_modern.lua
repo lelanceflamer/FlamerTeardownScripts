@@ -162,9 +162,9 @@ function toggleLights()
 end
 
 
----comment
+---Finds a light switch with the specific handle under the script's scope
 ---@param handle number Interact shape handle
----@return lightswitch? foundlight
+---@return lightswitch? foundLightSwitch The light switch that has been found with this handle, or `nil` if not found.
 function findLightSwitch(handle)
     return table.find(lightSwitches, function (value)
         return value.shape == handle
@@ -172,7 +172,7 @@ function findLightSwitch(handle)
 end
 
 ---#region utils
----comment
+---Please use ternary condition, this sucks.
 ---@param value boolean
 ---@param true_val any
 ---@param false_val any
@@ -186,14 +186,36 @@ function boolVal(value, true_val, false_val)
     return nil --If the provided value isn't a boolean value, then return nil.
 end
 
----comment
----@param number number
----@param decimals number?
----@return number
-function math.round(number, decimals)
-    decimals = decimals or 0
-    local multiplier = 10 ^ decimals
-    return math.floor(number * multiplier + 0.5) / multiplier
+---Rounds a number `n` with `d` decimals places, returning `r`.
+---@param n number The number
+---@param d number? The decimal places, nil or 0 for rounding to nearest integer.
+---@return number r The rounded number.
+function math.round(n, d)
+    d = d or 0
+    local multiplier = 10 ^ d
+    return math.floor(n * multiplier + 0.5) / multiplier
+end
+
+---Finds a specific element in a table `t` using function `func`, and whether to start from the end of the table.
+---@generic V Table's value type
+---@generic K Table's key type
+---@param t table<K, V> The table
+---@param func fun(value : V, index: K, t: table<K, V>) : boolean The function that looks for the specific element, taking 3 parameters (value, index, t)
+---@param startsFromEnd? boolean Whether to start looking at the end of the table instead of the beginning, default value is `false`.
+---@return V? value Found value in the table, or `nil` if not found.
+---@return K? index Found value index in the table, or `nil` if not found.
+function table.find(t, func, startsFromEnd)
+    if startsFromEnd == true then
+        t = table.invert(t)
+    end
+
+    for key, value in pairs(t) do
+        if func(value, key, t) then
+            return value, key
+        end
+    end
+
+    return nil, nil
 end
 
 ---#endregion
