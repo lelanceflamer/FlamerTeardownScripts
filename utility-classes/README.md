@@ -96,7 +96,7 @@ function self:draw()
   --ui stuff that we don't care about in this example
   ...
 
-  if UiIsMouseInRec(200, 50) and InputPressed("lmb") then
+  if UiIsMouseInRect(200, 50) and InputPressed("lmb") then
     self.Clicked:Fire(UiGetMousePos()) --Fires the event, with the 2 first event arguments being the mouse location (x and y)/
   end
 end
