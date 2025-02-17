@@ -58,3 +58,14 @@ function initTask(func)
 
   return self
 end
+
+
+---@generic K
+---@generic V
+---@param t table<K, V>
+---@param element V
+function table.indexOf(t, element)
+    local _, index = table.find(t, function (value) return element == value end)
+
+    return index
+end
