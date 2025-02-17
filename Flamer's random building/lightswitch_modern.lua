@@ -36,7 +36,7 @@ function init()
     currentState = pDefaultState --Current lights state
     --DebugPrint(pDefaultState)
 
-    obtainedLights = FindLights(boolVal(pChildLights:len() == 0, nil, pChildLights), pGlobal)
+    obtainedLights = FindLights(pChildLights:len() == 0 and nil or pChildLights, pGlobal)
     for i=1, #obtainedLights do
         local light = obtainedLights[i]
         local lightShape = GetLightShape(light)
