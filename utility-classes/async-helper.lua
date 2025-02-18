@@ -69,3 +69,25 @@ function table.indexOf(t, element)
 
     return index
 end
+
+---Finds an element from a table `t` using a function `func` and whether to start from the end `startsFromEnd`.
+---@generic V
+---@generic K
+---@param t table<K, V> The table to find the element
+---@param func fun(value : V, index: K, t: table<K, V>) : boolean The function that looks for the specified element (arg1: current value, arg2: current value's index, arg3: table `t`)
+---@param startsFromEnd? boolean Whether to start looking at the end of the table instead of the beginning, default value is `false`.
+---@return V? value Found value, or `nil` if not.
+---@return K? index Found value's index, or `nil` if not found.
+function table.find(t, func, startsFromEnd)
+    if startsFromEnd == true then
+        t = table.invert(t)
+    end
+
+    for key, value in pairs(t) do
+        if func(value, key, t) then
+            return value, key
+        end
+    end
+
+    return nil, nil
+end
